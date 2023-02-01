@@ -1,0 +1,325 @@
+{
+	"ABI version": 2,
+	"version": "2.2",
+	"header": ["pubkey", "time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"codeCollection","type":"cell"},
+				{"name":"codeNft","type":"cell"},
+				{"name":"codeIndex","type":"cell"},
+				{"name":"codeIndexBasis","type":"cell"},
+				{"name":"ownerPubkey","type":"uint256"},
+				{"name":"collectionsOwnerPubkey","type":"uint256"},
+				{"name":"withdrawalAddress","type":"address"},
+				{"name":"creationPrice","type":"uint128"},
+				{"name":"nftMintingFee","type":"uint128"},
+				{"name":"sellRoot","type":"address"},
+				{"name":"auctionRoot","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onNftCreated",
+			"inputs": [
+				{"name":"id","type":"uint256"},
+				{"name":"nftId","type":"uint256"},
+				{"name":"nft","type":"address"},
+				{"name":"owner","type":"address"},
+				{"name":"manager","type":"address"},
+				{"name":"creator","type":"address"},
+				{"name":"sendGasTo","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setCreationPrice",
+			"inputs": [
+				{"name":"value","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setMethodCallsFee",
+			"inputs": [
+				{"name":"value","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setLeftOnCollection",
+			"inputs": [
+				{"name":"value","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setMinimalGasAmount",
+			"inputs": [
+				{"name":"value","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setCollectionsMinimalGasAmount",
+			"inputs": [
+				{"name":"value","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setCollectionsOwner",
+			"inputs": [
+				{"name":"pubkey","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setCodeCollection",
+			"inputs": [
+				{"name":"code","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setCodeIndex",
+			"inputs": [
+				{"name":"code","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setCodeIndexBasis",
+			"inputs": [
+				{"name":"code","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setWithdrawalAddress",
+			"inputs": [
+				{"name":"addr","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setOffersRoots",
+			"inputs": [
+				{"name":"sellRoot","type":"address"},
+				{"name":"auctionRoot","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "stopCollectionsDeployment",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "startCollectionsDeployment",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "withdraw",
+			"inputs": [
+				{"name":"value","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "destroy",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "totalSupply",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"count","type":"uint128"}
+			]
+		},
+		{
+			"name": "withdrawalAddress",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"addr","type":"address"}
+			]
+		},
+		{
+			"name": "getCollectionsOwner",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"ownerPubkey","type":"uint256"}
+			]
+		},
+		{
+			"name": "getFeesInfo",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"totalCreationPrice","type":"uint128"},
+				{"name":"leftOnCollection","type":"uint128"},
+				{"name":"creationPrice","type":"uint128"},
+				{"name":"deployIndexBasisValue","type":"uint128"},
+				{"name":"nftMintingFee","type":"uint128"},
+				{"name":"methodsCallsFee","type":"uint128"},
+				{"name":"minimalGasAmount","type":"uint128"},
+				{"name":"collectionsMinimalGasAmount","type":"uint128"}
+			]
+		},
+		{
+			"name": "offersRoots",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"sellRoot","type":"address"},
+				{"name":"auctionRoot","type":"address"}
+			]
+		},
+		{
+			"name": "deploymentIsActive",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"isActive","type":"bool"}
+			]
+		},
+		{
+			"name": "collectionCode",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"code","type":"cell"}
+			]
+		},
+		{
+			"name": "collectionCodeHash",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"codeHash","type":"uint256"}
+			]
+		},
+		{
+			"name": "collectionAddress",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"id","type":"uint256"}
+			],
+			"outputs": [
+				{"name":"collection","type":"address"}
+			]
+		},
+		{
+			"name": "owner",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"pubkey","type":"uint256"}
+			]
+		},
+		{
+			"name": "transferOwnership",
+			"inputs": [
+				{"name":"newOwner","type":"uint256"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+		{
+			"name": "CollectionCreated",
+			"inputs": [
+				{"name":"id","type":"uint256"},
+				{"name":"collection","type":"address"},
+				{"name":"author","type":"address"},
+				{"name":"json","type":"string"},
+				{"name":"isProtected","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "NftCreated",
+			"inputs": [
+				{"name":"id","type":"uint256"},
+				{"name":"nft","type":"address"},
+				{"name":"collection","type":"address"},
+				{"name":"owner","type":"address"},
+				{"name":"manager","type":"address"},
+				{"name":"creator","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "OwnershipTransferred",
+			"inputs": [
+				{"name":"oldOwner","type":"uint256"},
+				{"name":"newOwner","type":"uint256"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"_owner","type":"uint256"},
+		{"name":"_codeCollection","type":"cell"},
+		{"name":"_codeNft","type":"cell"},
+		{"name":"_codeIndex","type":"cell"},
+		{"name":"_codeIndexBasis","type":"cell"},
+		{"name":"_withdrawalAddress","type":"address"},
+		{"name":"_collectionsOwnerPubkey","type":"uint256"},
+		{"name":"_leftOnCollection","type":"uint128"},
+		{"name":"_minimalGasAmount","type":"uint128"},
+		{"name":"_creationPrice","type":"uint128"},
+		{"name":"_deployIndexBasisValue","type":"uint128"},
+		{"name":"_nftMintingFee","type":"uint128"},
+		{"name":"_methodsCallsFee","type":"uint128"},
+		{"name":"_collectionsMinimalGasAmount","type":"uint128"},
+		{"name":"_totalSupply","type":"uint128"},
+		{"name":"_sellRoot","type":"address"},
+		{"name":"_auctionRoot","type":"address"},
+		{"name":"_deploymentIsActive","type":"bool"}
+	]
+}

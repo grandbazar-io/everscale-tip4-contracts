@@ -1,0 +1,80 @@
+{
+	"ABI version": 2,
+	"version": "2.2",
+	"header": ["pubkey", "time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"ownerPubkey","type":"uint256"},
+				{"name":"minBalance","type":"uint128"},
+				{"name":"numbersAmount","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "fillNumbersArray",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getFreeNumbers",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"numbers","type":"uint16[]"}
+			]
+		},
+		{
+			"name": "getMinBalance",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"minBalance","type":"uint128"}
+			]
+		},
+		{
+			"name": "withdraw",
+			"inputs": [
+				{"name":"dest","type":"address"},
+				{"name":"value","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "destruct",
+			"inputs": [
+				{"name":"dest","type":"address"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+		{
+			"name": "RandomNumberWasGenerated",
+			"inputs": [
+				{"name":"recipient","type":"address"},
+				{"name":"number","type":"uint256"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"_numbers","type":"uint16[]"},
+		{"name":"_numbersAmount","type":"uint16"},
+		{"name":"_minBalance","type":"uint128"},
+		{"name":"_ownerPubkey","type":"uint256"},
+		{"name":"_active","type":"bool"}
+	]
+}

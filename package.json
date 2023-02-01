@@ -1,0 +1,23 @@
+{
+  "name": "@grandbazar-io/everscale-tip4-contracts",
+  "version": "1.0.0",
+  "description": "Grandbazar.io everscale TIP4 contracts",
+  "dependencies": {
+    "@itgold/everscale-tip": "^1.1.3",
+    "@tonclient/appkit": "^0.3.0",
+    "@tonclient/core": "^1.30.0",
+    "@tonclient/lib-node": "^1.30.0",
+    "broxus-ton-tokens-contracts": "github:broxus/tip3",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "locklift": "^2.4.8"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grandbazar-io/everscale-tip4-contracts.git"
+  },
+  "author": "Grandbazar.io",
+  "license": "MIT"
+}
