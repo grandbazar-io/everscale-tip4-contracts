@@ -1,0 +1,698 @@
+.version sol 0.58.1
+
+.macro constructor
+DROP
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+GETGLOB 6
+THROWIF 51
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDU 256
+LDU 128
+LDU 16
+ENDS
+.loc ../contracts/RandomGenerator.sol, 29
+ACCEPT
+.loc ../contracts/RandomGenerator.sol, 31
+SWAP
+SETGLOB 12
+.loc ../contracts/RandomGenerator.sol, 32
+SWAP
+SETGLOB 13
+.loc ../contracts/RandomGenerator.sol, 33
+SETGLOB 11
+.loc ../contracts/RandomGenerator.sol, 34
+FALSE
+SETGLOB 14
+.loc ../contracts/RandomGenerator.sol, 0
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro fillNumbersArray
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/RandomGenerator.sol, 37
+ENDS
+.loc ../contracts/RandomGenerator.sol, 0
+CALLREF {
+	CALL $fillNumbersArray_internal_macro$
+}
+DROP
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.globl	fillNumbersArray_internal
+.type	fillNumbersArray_internal, @function
+CALL $fillNumbersArray_internal_macro$
+
+.macro fillNumbersArray_internal_macro
+.loc ../contracts/RandomGenerator.sol, 92
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+GETGLOB 13
+EQUAL
+THROWIFNOT 101
+.loc ../contracts/RandomGenerator.sol, 97
+GETPARAM 7
+FIRST
+GETGLOB 12
+GREATER
+THROWIFNOT 102
+.loc ../contracts/RandomGenerator.sol, 38
+GETGLOB 14
+THROWIF 111
+.loc ../contracts/RandomGenerator.sol, 39
+ACCEPT
+.loc ../contracts/RandomGenerator.sol, 41
+PUSHINT 0
+.loc ../contracts/RandomGenerator.sol, 42
+GETGLOB 10
+FIRST
+UFITS 16
+.loc ../contracts/RandomGenerator.sol, 43
+DUP
+ADDCONST 100
+UFITS 16
+GETGLOB 11
+LESS
+PUSHCONT {
+	.loc ../contracts/RandomGenerator.sol, 44
+	GETGLOB 10
+	FIRST
+	UFITS 16
+	ADDCONST 100
+	UFITS 16
+	POP S2
+}
+PUSHCONT {
+	.loc ../contracts/RandomGenerator.sol, 46
+	GETGLOB 11
+	POP S2
+	.loc ../contracts/RandomGenerator.sol, 47
+	TRUE
+	SETGLOB 14
+}
+IFELSE
+.loc ../contracts/RandomGenerator.sol, 50
+INC
+UFITS 16
+PUSHCONT {
+	PUSH2 S0, S1
+	LEQ
+}
+PUSHCONT {
+	.loc ../contracts/RandomGenerator.sol, 51
+	GETGLOB 10
+	OVER
+	NEWC
+	STU 16
+	SWAP
+	UNPAIR
+	OVER
+	INC
+	ROLLREV 3
+	PUSHINT 32
+	DICTUSETB
+	PAIR
+	SETGLOB 10
+	.loc ../contracts/RandomGenerator.sol, 50
+	INC
+	UFITS 16
+	.loc ../contracts/RandomGenerator.sol, 0
+}
+WHILE
+DROP2
+.loc ../contracts/RandomGenerator.sol, 0
+
+.globl	_getRandomNumber_internal
+.type	_getRandomNumber_internal, @function
+CALL $_getRandomNumber_internal_macro$
+
+.macro _getRandomNumber_internal_macro
+.loc ../contracts/RandomGenerator.sol, 55
+PUSHINT 0
+.loc ../contracts/RandomGenerator.sol, 56
+GETGLOB 10
+FIRST
+CALLREF {
+	CALL $_genNumber_internal_macro$
+}
+UFITS 16
+.loc ../contracts/RandomGenerator.sol, 57
+DUP
+GETGLOB 10
+SECOND
+PUSHINT 32
+DICTUGET
+THROWIFNOT 50
+PLDU 16
+POP S2
+.loc ../contracts/RandomGenerator.sol, 59
+GETGLOB 10
+UNPAIR
+PUXC S2, S-1
+PUSH2 S1, S2
+LESS
+THROWIFNOT 50
+NEWC
+STSLICECONST x0000
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+DUP
+SETGLOB 10
+.loc ../contracts/RandomGenerator.sol, 60
+FIRST
+DEC
+UFITS 256
+GETGLOB 10
+SECOND
+PUSHINT 32
+DICTUGET
+THROWIFNOT 50
+PLDU 16
+GETGLOB 10
+UNPAIR
+ROLL 3
+TUCK
+PUSH S3
+LESS
+THROWIFNOT 50
+ROLL 3
+NEWC
+STU 16
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+DUP
+SETGLOB 10
+.loc ../contracts/RandomGenerator.sol, 61
+UNPAIR
+OVER
+THROWIFNOT 54
+SWAP
+DEC
+DUP
+ROT
+PUSHINT 32
+DICTUDEL
+DROP
+PAIR
+SETGLOB 10
+.loc ../contracts/RandomGenerator.sol, 0
+
+.globl	_genNumber_internal
+.type	_genNumber_internal, @function
+CALL $_genNumber_internal_macro$
+
+.macro _genNumber_internal_macro
+.loc ../contracts/RandomGenerator.sol, 70
+LTIME
+ADDRAND
+.loc ../contracts/RandomGenerator.sol, 71
+RAND
+UFITS 64
+.loc ../contracts/RandomGenerator.sol, 0
+
+.macro getFreeNumbers
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/RandomGenerator.sol, 74
+ENDS
+.loc ../contracts/RandomGenerator.sol, 0
+CALLREF {
+	CALL $getFreeNumbers_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 3232030384
+	STUR 130
+	SWAP
+	UNPAIR
+	XCHG S2
+	STU 32
+	STDICT
+	ENDC
+	PUSHINT 0
+	SENDRAWMSG
+}
+PUSHCONT {
+	DROP
+}
+IFELSE
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.globl	getFreeNumbers_internal
+.type	getFreeNumbers_internal, @function
+CALL $getFreeNumbers_internal_macro$
+
+.macro getFreeNumbers_internal_macro
+.loc ../contracts/RandomGenerator.sol, 75
+GETGLOB 10
+.loc ../contracts/RandomGenerator.sol, 0
+
+.macro getMinBalance
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/RandomGenerator.sol, 78
+ENDS
+.loc ../contracts/RandomGenerator.sol, 0
+CALLREF {
+	CALL $getMinBalance_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 2412610223
+	STUR 130
+	STU 128
+	ENDC
+	PUSHINT 0
+	SENDRAWMSG
+}
+PUSHCONT {
+	DROP
+}
+IFELSE
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.globl	getMinBalance_internal
+.type	getMinBalance_internal, @function
+CALL $getMinBalance_internal_macro$
+
+.macro getMinBalance_internal_macro
+.loc ../contracts/RandomGenerator.sol, 79
+GETGLOB 12
+.loc ../contracts/RandomGenerator.sol, 0
+
+.macro withdraw
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/RandomGenerator.sol, 82
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
+LDU 128
+ENDS
+.loc ../contracts/RandomGenerator.sol, 0
+CALLREF {
+	CALL $withdraw_internal_macro$
+}
+DROP
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro withdraw_internal_macro
+.loc ../contracts/RandomGenerator.sol, 92
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+GETGLOB 13
+EQUAL
+THROWIFNOT 101
+.loc ../contracts/RandomGenerator.sol, 83
+ACCEPT
+.loc ../contracts/RandomGenerator.sol, 85
+SWAP
+NEWC
+STSLICECONST x62_
+STSLICE
+SWAP
+STGRAMS
+PUSHINT 107
+STZEROES
+ENDC
+PUSHINT 1
+SENDRAWMSG
+.loc ../contracts/RandomGenerator.sol, 0
+
+.macro destruct
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/RandomGenerator.sol, 87
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
+ENDS
+.loc ../contracts/RandomGenerator.sol, 0
+CALLREF {
+	CALL $destruct_internal_macro$
+}
+DROP
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.globl	destruct_internal
+.type	destruct_internal, @function
+CALL $destruct_internal_macro$
+
+.macro destruct_internal_macro
+.loc ../contracts/RandomGenerator.sol, 92
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+GETGLOB 13
+EQUAL
+THROWIFNOT 101
+.loc ../contracts/RandomGenerator.sol, 88
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHINT 160
+SENDRAWMSG
+.loc ../contracts/RandomGenerator.sol, 0
+
+.macro c4_to_c7
+PUSHROOT
+CTOS
+LDU 256 ; pubkey c4
+LDU 64 ; pubkey timestamp c4
+LDU 1 ; ctor flag
+NIP
+LDU 32
+LDDICT
+ROTREV
+PAIR
+SWAP
+LDU 16
+LDU 128
+LDU 256
+LDI 1
+ENDS
+SETGLOB 14
+SETGLOB 13
+SETGLOB 12
+SETGLOB 11
+SETGLOB 10
+SETGLOB 3
+SETGLOB 2
+
+.macro c4_to_c7_with_init_storage
+PUSHROOT
+CTOS
+SBITS
+GTINT 1
+PUSHCONT {
+	PUSHINT 0
+	PUSHROOT
+	CTOS
+	PLDDICT ; D
+	PUSHINT 0
+	NEWDICT
+	PAIR
+	PUSHINT 0
+	BLKPUSH 3, 0
+	SETGLOB 14
+	SETGLOB 13
+	SETGLOB 12
+	SETGLOB 11
+	SETGLOB 10
+	PUSHINT 64
+	DICTUGET
+	THROWIFNOT 61
+	PLDU 256
+	SETGLOB 2
+	PUSHINT 0 ; timestamp
+	SETGLOB 3
+}
+IFREFELSE {
+	CALL $c4_to_c7$
+}
+
+.macro c7_to_c4
+GETGLOB 14
+GETGLOB 13
+GETGLOB 12
+GETGLOB 11
+GETGLOB 10
+GETGLOB 3
+GETGLOB 2
+NEWC
+STU 256
+STU 64
+STONE
+SWAP
+UNPAIR
+XCHG S2
+STU 32
+STDICT
+STU 16
+STU 128
+STU 256
+STI 1
+ENDC
+POPROOT
+
+.macro upd_only_time_in_c4
+PUSHROOT
+CTOS
+LDU 256
+LDU 64
+NIP
+GETGLOB 3
+ROT
+NEWC
+STU 256
+STU 64
+STSLICE
+ENDC
+POPROOT
+
+.internal-alias :main_internal, 0
+.internal :main_internal
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+PUSH S2
+CTOS
+PLDU 4
+MODPOW2 1
+IFRET
+OVER
+SEMPTY ; isEmpty
+IFJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+OVER
+LDUQ 32  ; [funcId] body' ok
+THROWIFNOT 60
+OVER
+IFNOTJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.internal-alias :main_external, -1
+.internal :main_external
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+OVER
+CALLREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+LDU 1 ; haveSign msgSlice
+SWAP
+PUSHCONT {
+	PUSHINT 512
+	LDSLICEX ; signatureSlice msgSlice
+	DUP
+	HASHSU ; signatureSlice msgSlice hashMsgSlice
+	SWAP
+	LDU 1 ; signatureSlice hashMsgSlice havePubkey msgSlice
+	SWAP
+	PUSHCONT {
+		LDU 256 ; signatureSlice hashMsgSlice pubkey msgSlice
+		XCHG S3
+		SWAP
+	}
+	PUSHCONT {
+		XCHG S2
+		GETGLOB 2
+	}
+	IFELSE
+	DUP
+	SETGLOB 5
+	CHKSIGNU ; msgSlice isSigned
+	THROWIFNOT 40
+}
+PUSHCONT {
+	LDU 1 ; havePubkey msgSlice
+	SWAP
+	THROWIF 58
+}
+IFELSE
+LDU 64 ; timestamp msgSlice
+SWAP
+CALL $replay_protection_macro$
+LDU 32 ; expireAt msgSlice
+SWAP
+NOW ; msgSlice expireAt now
+GREATER ; msgSlice expireAt>now
+THROWIFNOT 57
+LDU 32 ; funcId body
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.macro public_function_selector
+DUP
+PUSHINT 423829361
+LEQ
+IFJMPREF {
+	DUP
+	PUSHINT 61058519
+	EQUAL
+	IFJMPREF {
+		CALL $destruct$
+	}
+	DUP
+	PUSHINT 141807997
+	EQUAL
+	IFJMPREF {
+		CALL $withdraw$
+	}
+	DUP
+	PUSHINT 265126575
+	EQUAL
+	IFJMPREF {
+		CALL $getMinBalance$
+	}
+	DUP
+	PUSHINT 423829361
+	EQUAL
+	IFJMPREF {
+		CALL $fillNumbersArray$
+	}
+}
+DUP
+PUSHINT 1215380005
+LEQ
+IFJMPREF {
+	DUP
+	PUSHINT 1084546736
+	EQUAL
+	IFJMPREF {
+		CALL $getFreeNumbers$
+	}
+	DUP
+	PUSHINT 1215380005
+	EQUAL
+	IFJMPREF {
+		CALL $constructor$
+	}
+}
+
