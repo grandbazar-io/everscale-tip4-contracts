@@ -7,6 +7,10 @@ Customizable grandbazar.io NFT contracts. Based on [Itgold](https://github.com/i
 - Install [Everdev](https://github.com/tonlabs/everdev)
 - Install [Locklift](https://github.com/broxus/locklift)
 
+# Installation 
+
+```npm i @grandbazar-io/everscale-tip4-contracts```
+
 # Build project
 
 1. Copy ```locklift.config.template.ts``` into ```config.template.ts``` and configure it 
